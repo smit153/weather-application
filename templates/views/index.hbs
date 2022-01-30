@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>Weather</title>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <link rel="icon" href="/img/weather.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css"/>
+    
+    <link rel="stylesheet" href="/css/autocomplete.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+     
+</head>
+
+<body id="bg" >
+  {{!-- <div id="bg"> --}}
+  
+  <div class="main-content">
+    {{>header}}
+  </div>
+  
+    <section id="container" class="opa" >
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-md-12 col-lg-4 ">
+            <div class="show2">
+              <div class="card-body ">
+                <div class=" text-center" id="Mainicon">
+                  {{!-- <img src="/img/animated/day.svg" class="rounded-circle mb-3 " id="icon"/> --}}
+                </div>
+                <h1 id="loc"></h1>
+                <p id="date"> <p>
+                <p id="statement"> </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 ">
+            <div class="show2">
+              <div class="card-body">
+                <p class="main-p" id="temp"> </p>
+                <p class="main-p" id="fl"> </p>
+                <p class="main-p" id="pressure"></p>
+                <p class="main-p" id="humidity"></p>
+                <p class="main-p" id="wind"></p>
+                <p class="main-p" id="clouds"></p>
+                <p class="main-p" id="pop"></p>
+                <p class="main-p" id="uvi"></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4 ">
+            <div class="show2">
+              <div class="card-body text-center ">
+                <canvas class="align-middle" height="250" id="myChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+      
+      <div class="accordion  pt-2" id="accordionExample">
+        <div class="accordion-item show2">
+          <h2 class="accordion-header bg-dark" id="headingOne">
+            <button class="accordion-button btn-dark bg-dark text-white " id="day1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" >
+              <div class="container">
+                <div class="row">
+                  <div class="col-4"id="heading1"></div>
+                  <div class="col-6"id="s1"></div>
+                </div>
+              </div>
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show2"  data-bs-parent="#accordionExample">
+            <div class="accordion-body ">
+              <div class="container">
+                <div class="row text-white">
+                  <div class="col-md-4 col-sm-12 text-white"id="d1">
+                    <p id="p0"></p>
+                    <p id="h0"></p>
+                    <p id="w0"></p>
+                    <p id="c0"></p>
+                    <p id="r0"></p>
+                    <p id="u0"></p>
+                  </div>
+                  <div class="col-md-6 col-sm-12"id="i1">
+                    <table class="table show2 text-white table-hover">
+                      <thead>
+                        <tr class=" text-white" id="tah0">
+                          
+                        </tr>
+                      </thead>
+                      <tbody class="text-white" id="st0">
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item  show2">
+          <h2 class="accordion-header bg-dark" id="headingTwo">
+            <button class="accordion-button  bg-dark text-white "id="day2"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" >
+              <div class="container">
+                <div class="row">
+                  <div class="col-4"id="heading2"></div>
+                  <div class="col-6"id="s2"></div>
+                </div>
+              </div>
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse show2 text-white"  data-bs-parent="#accordionExample">
+            
+            <div class="accordion-body ">
+              <div class="container">
+                <div class="row text-white">
+                  <div class="col-md-4 col-sm-12 text-white"id="d1">
+                    <p id="p1"></p>
+                    <p id="h1"></p>
+                    <p id="w1"></p>
+                    <p id="c1"></p>
+                    <p id="r1"></p>
+                    <p id="u1"></p>
+                  </div>
+                  <div class="col-md-6 col-sm-12"id="i1">
+                    <table class="table show2 text-white table-hover">
+                      <thead>
+                        <tr class=" text-white" id="tah1">
+                          
+                        </tr>
+                      </thead>
+                      <tbody class="text-white" id="st1">
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+
+
+
+
+        <div class="accordion-item show2">
+          <h2 class="accordion-header bg-dark" id="headingThree">
+            <button class="accordion-button  bg-dark text-white "id="day3"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" >
+              <div class="container">
+                <div class="row">
+                  <div class="col-4"id="heading3"></div>
+                  <div class="col-6"id="s3"></div>
+                </div>
+              </div>
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse show2 text-white"  data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="container">
+                <div class="row text-white">
+                  <div class="col-md-4 col-sm-12 text-white"id="d1">
+                    <p id="p2"></p>
+                    <p id="h2"></p>
+                    <p id="w2"></p>
+                    <p id="c2"></p>
+                    <p id="r2"></p>
+                    <p id="u2"></p>
+                  </div>
+                  <div class="col-md-6 col-sm-12"id="i1">
+                    <table class="table  show2 text-white table-hover">
+                      <thead>
+                        <tr id="tah2">
+                          
+                        </tr>
+                      </thead>
+                      <tbody id="st2">
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item show2">
+          <h2 class="accordion-header bg-dark" id="headingFour">
+            <button class="accordion-button  bg-dark text-white "id="day4"  type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" >
+              <div class="container">
+                <div class="row">
+                  <div class="col-4"id="heading4"></div>
+                  <div class="col-6"id="s4"></div>
+                </div>
+              </div>
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse show2 text-white" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="container">
+                <div class="row text-white">
+                  <div class="col-md-4 col-sm-12 text-white"id="d1">
+                    <p id="p3"></p>
+                    <p id="h3"></p>
+                    <p id="w3"></p>
+                    <p id="c3"></p>
+                    <p id="r3"></p>
+                    <p id="u3"></p>
+                  </div>
+                  <div class="col-md-6 col-sm-12"id="i1">
+                    <table class="table  show2 text-white table-hover">
+                      <thead>
+                        <tr id="tah3">
+                          
+                        </tr>
+                      </thead>
+                      <tbody id="st3">
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="accordion-item show2">
+          <h2 class="accordion-header bg-dark" id="headingFive">
+            <button class="accordion-button bg-dark text-white " id="day5" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" >
+              <div class="container">
+                <div class="row">
+                  <div class="col-4"id="heading5"></div>
+                  <div class="col-6"id="s5"></div>
+                </div>
+              </div>
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse show2 text-white collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              <div class="container">
+                <div class="row text-white">
+                  <div class="col-md-4 col-sm-12 text-white"id="d1">
+                    <p id="p4"></p>
+                    <p id="h4"></p>
+                    <p id="w4"></p>
+                    <p id="c4"></p>
+                    <p id="r4"></p>
+                    <p id="u4"></p>
+                  </div>
+                  <div class="col-md-6 col-sm-12"id="i1">
+                    <table class="table show2 text-white  table-hover">
+                      <thead>
+                        <tr id="tah4">
+                        </tr>
+                      </thead>
+                      <tbody id="st4">
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      </div>
+    </section>
+{{!-- </div> --}}
+<div >
+    {{>footer}}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  <script src="/js/autocomplete.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+  
+</body>
+
+</html>
