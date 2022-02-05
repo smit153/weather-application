@@ -5,19 +5,18 @@ body {
   background-size: cover;
   height: 100vh;
   background-repeat: no-repeat;
-  /* background-image: url("/img/img/m1.jpg"); */
+  margin: 0ox;
+  padding: 0px;
 }
-
-@media (min-width: 768px) {
-  .my-input {
-    width: 450px;
-  }
-  header {
-    padding-top: 5%;
-    margin-bottom: 200px;
-  }
+/* .my-input {
+  width: 400px;
+} */
+#search {
+  width: 100%;
+  position: relative;
+  right: 0;
+  left: 0;
 }
-
 #windy {
   width: 100%;
   height: 88vh;
@@ -68,11 +67,29 @@ header {
 s1 {
   max-height: 60px;
 }
+#search {
+  position: relative;
+}
 @media (max-width: 768px) {
-  .my-input {
-    width: 100%;
+  header {
+    margin-bottom: 35px;
   }
+  /* .my-input {
+    width: 100%;
+  } */
   #icon {
     margin-top: -30px;
   }
+  #windy {
+    height: 81vh;
+  }
+}
+#container {
+  padding-bottom: 80px;
+}
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
 }

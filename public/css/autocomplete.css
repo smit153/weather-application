@@ -1,5 +1,6 @@
 .tp-autocomplete {
   position: relative;
+  width: 75%;
 }
 
 .tp-ac__input {
@@ -118,4 +119,9 @@
   border: 2px solid rgba(0, 0, 0, 0.3);
   border-top-color: rgba(0, 0, 0, 0.6);
   border-radius: 50%;
+}
+@media (max-width: 768px) {
+  .tp-autocomplete {
+    width: 85%;
+  }
 }
