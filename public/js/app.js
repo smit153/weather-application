@@ -42,10 +42,15 @@ const bg = document.getElementById("bg");
 let i = 0,
   j = 0,
   k = 0,
-  n = 0;
+  n = 0,
+  b = 0;
 
 let wind_dir;
 function graph(response) {
+  document.getElementById("submit").addEventListener("click", (event) => {
+    event.preventDefault();
+    if (b != 0) myChart.destroy();
+  });
   const labels = [
     today.getHours() + ".00",
     today.getHours() + 1 + ".00",
@@ -153,6 +158,7 @@ function graph(response) {
     },
   };
   const myChart = new Chart(document.getElementById("myChart"), config);
+  b++;
 }
 
 function forecastData(response) {
@@ -239,14 +245,7 @@ function getweather(response) {
     response.data.current.feels_like +
     "°C | " +
     response.data.current.weather[0].description;
-  temp.innerHTML =
-    "<b>Temperature:</b> " +
-    response.data.current.temp +
-    "°C (max:" +
-    response.data.daily[k].temp.max +
-    " min:" +
-    response.data.daily[k].temp.min +
-    ")";
+  temp.innerHTML = "<b>Temperature:</b> " + response.data.current.temp;
   fl.innerHTML =
     "<b>Feels like:</b> " + response.data.current.feels_like + "°C";
   pressure.innerHTML =
@@ -262,6 +261,7 @@ function getweather(response) {
 }
 function mainIcon(response) {
   let hd01;
+  k = 0;
   if (Math.round(response.data.daily[k].weather[0].id % 100) == 2) {
     hd01 = "<img src='/img/animated/rainy-" + a + ".svg'  id='icon'/>";
     icon.innerHTML = hd01;
